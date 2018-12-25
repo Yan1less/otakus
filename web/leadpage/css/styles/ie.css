@@ -1,0 +1,45 @@
+/* IE */
+
+a {display:inline-block;}
+
+.horizon.simple .header_wrap {box-shadow:none;}
+
+.horizon.simple .header_arrow.hidden:hover, .horizon .header_arrow.hidden:hover {background:url(${pageContext.request.contextPath}/front/../images/vert_hidden.png) no-repeat 16px 15px;}
+
+#contactform input, #commentform input {
+	border:1px solid #3D3C3C;
+	padding-top:8px;
+	height:20px;
+}
+
+.widget_search form, .error form, #contactform textarea, #commentform textarea {border:1px solid #4e4e4e;}
+
+#middle .accordion .tab_content, #middle .togg .tab_content, #middle .tab .tab_content, .horizon #header, .horizon.simple .header_wrap, .standard.simple .header_wrap, .vertical.simple .header_wrap {box-shadow:none;}
+
+.simple #navigation li.current_page_item li.current_page_item {background:#f2f2f2;}
+
+.wood.vertical #navigation ul li, .simple.horizon #navigation ul li {line-height:19px;}
+
+.horizon.simple #navigation li ul {top:38px;}
+
+*:first-child+html .social_block a:hover {background:#2A323B;}
+
+*:first-child+html .error div {padding-left:0;}
+
+*:first-child+html .widget_search input[type="text"], *:first-child+html .error input[type="text"] {padding-top:9px;}
+
+*:first-child+html .widget_search input[type="submit"], *:first-child+html .error input[type="submit"] {padding-top:6px;}
+
+*:first-child+html .simple #navigation li {
+	margin-left:4px;
+	padding-right:4px;
+}
+
+*:first-child+html .header_arrow.hidden:hover {background:url(../../images/hdr_hidden.png) no-repeat 16px 15px;}
+
+*:first-child+html .simple #navigation li li {
+	margin-left:0;
+	padding-right:0;
+}
+
+.comment-body {border:1px solid #4e4e4e;}
