@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.otakus.mapper.ArticleMapper">
+    <select id="PrepareData" resultType="information">
+        select * from  information ;
+    </select>
+
+    <insert id="SubmitInformation">
+        insert into information values (#{information_id},#{title},#{id},#{from_username},#{main_information},#{time},
+                        0 ,0 ,null ,null ,null )
+    </insert>
+
+    <select id="loadArticleDetails" parameterType="String" resultType="information">
+        select *  from information where information_id = #{id};
+    </select>
+
+    <select id="selectInvitationByUserId" parameterType="String" resultType="information">
+        select * from information where from_user = #{user_id};
+    </select>
+    <update id="AddTotalVisited" parameterType="String">
+        update information set total_visited = total_visited+1 where information_id = #{id};
+    </update>
+    <update id="AddTotalCommit" parameterType="String">
+        update information set total_commit = total_commit+1 where information_id = #{id};
+    </update>
+    <select id="SelectCommentByInfoID" parameterType="String" resultType="comment">
+        select * from comment where from_information_id = #{information_id};
+    </select>
+    <delete id="DeleteInformationByID" parameterType="String">
+        delete from information
+        <where>
+            information_id = #{id};
+        </where>
+    </delete>
+    <delete id="DeleteCommitByID" parameterType="String">
+        delete from  comment
+        <where>
+            from_information_id = #{id};
+        </where>
+    </delete>
+
+    <update id="UpdateArticlePic">
+        update information set pics = #{pics}
+        <where>
+            information_id = #{information_id};
+        </where>
+    </update>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.otakus.mapper.AdminArticleMapper">
+    <select id="LoadAdminArticle" resultType="admin_article" parameterType="String">
+        select * from admin_article
+        <where>
+              id = #{id};
+        </where>
+    </select>
+    <select id="LoadAdminArticleTitle" resultType="admin_article">
+        select id,title,pic from admin_article;
+    </select>
+    <update id="AddWatched">
+        UPDATE admin_article SET watched=watched+1
+        <where>
+            id=#{id}
+        </where>
+      ;
+    </update>
+</mapper>

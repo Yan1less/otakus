@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.otakus.mapper.CommitMapper">
+    <select id="SearchUsernameByID" parameterType="String" resultType="String">
+        select petname from user where user_id = #{userID};
+    </select>
+    <insert id="submit_commit" parameterType="String">
+        insert into comment values(#{comment_id},#{from_information_id},#{from_user_id},
+        #{from_informationname},#{from_username},#{comment_time},#{commit_details},0,0,0,null);
+    </insert>
+    <select id="loadComments" parameterType="String" resultType="comment">
+        select * from comment where from_information_id = #{id} ORDER BY comment_time;
+    </select>
+    <select id="getcommitPraise" parameterType="String" resultType="Integer">
+      select praise from comment where comment_id = #{comment_id}
+    </select>
+    <update id="setcommitPraise" >
+      update comment set praise = #{praise} where comment_id = #{comment_id}
+    </update>
+    <select id="loadUserComments"  resultType="comment">
+        select * from comment where from_user_id = #{userID} limit #{currentPage},#{pagesize};
+    </select>
+    <select id="getInfoNameById" parameterType="String" resultType="String">
+        select name from information where information_id = #{id};
+    </select>
+    <select id="getCommitTotalCount" parameterType="String" resultType="Integer">
+        select count(*) from comment where from_user_id = #{userID};
+    </select>
+</mapper>

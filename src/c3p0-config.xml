@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+	<default-config>
+		<property name="user">root</property>
+		<property name="password">316295613jing15</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://cdb-j1dk6wbq.bj.tencentcdb.com:10021/news</property>
+	</default-config> 
+</c3p0-config> 

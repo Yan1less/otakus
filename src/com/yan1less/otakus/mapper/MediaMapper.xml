@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.otakus.mapper.MediaMapper">
+    <insert id="AddPicture">
+          insert into media values (#{media_id},#{from_user_id},#{pic},#{pic_name},#{pic_class},#{is_used},#{extra});
+    </insert>
+    <select id="LoadUserPicByUser_id" resultType="media" parameterType="String">
+        select * from media
+        <where>
+            from_user_id = #{user_id};
+        </where>
+    </select>
+    <update id="EditPicInfo" >
+        update media set pic_name = #{pic_name},pic_class = #{pic_class}
+        <where>
+            media_id = #{pic_id};
+        </where>
+    </update>
+    <select id="getPicRealName" parameterType="String" resultType="String">
+        select pic from media
+        <where>
+            media_id = #{pic_id};
+        </where>
+    </select>
+    <delete id="DeleteRowByID" parameterType="String">
+        delete from media
+        <where>
+            media_id = #{pic_id};
+        </where>
+    </delete>
+    <update id="UpDateUserPic">
+        update user set photo = #{pic}
+        <where>
+            user_id = #{user_id};
+        </where>
+    </update>
+    <select id="SearchPicByPicID" parameterType="String" resultType="String">
+        select pic from media
+        <where>
+            media_id = #{pic_id};
+        </where>
+    </select>
+    <select id="SearchIsPicHave" parameterType="String" resultType="Integer">
+        select count(*) from picture
+        <where>
+            pic_id = #{pic_id};
+        </where>
+    </select>
+    <select id="SearchIsClassRight" parameterType="String" resultType="String">
+        select pic_class from media
+        <where>
+            media_id = #{pic_id};
+        </where>
+    </select>
+    <select id="LoadAllClasses" resultType="String">
+        select  pic_class from media_class;
+    </select>
+    <select id="SearchClassIDbyClass" parameterType="String" resultType="String">
+        select pic_id from media_class
+        <where>
+            pic_class = #{pic_class};
+        </where>
+    </select>
+    <select id="getSrcByID" resultType="String" parameterType="String">
+        select pic from media
+        <where>
+            media_id = #{pic_id}
+        </where>
+    </select>
+    <insert id="UploadMedia" parameterType="picture">
+        insert into picture values (#{id},#{from_user},#{from_user_id},#{upload_date},#{src},#{pic_id},#{extra},#{link_class_id})
+    </insert>
+
+
+
+
+
+
+
+    <select id="getMediaClass" resultType="media_class">
+        select * from media_class;
+    </select>
+    <select id="getPicsByClass" resultType="picture" parameterType="String">
+        select * from picture
+        <where>
+            link_class_id = (
+              select pic_id from media_class
+            <where>
+                pic_class = #{pic_class}
+            </where>
+            );
+        </where>
+    </select>
+
+</mapper>

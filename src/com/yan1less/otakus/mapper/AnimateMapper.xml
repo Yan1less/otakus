@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.otakus.mapper.AnimateMapper">
+
+    <select id="loadAnimateInfo" resultType="animate">
+        select * from animate limit #{currentPage},#{pageSize};
+
+    </select>
+    <select id="getAnimateTotalCount" resultType="Integer">
+        select count(*) from animate;
+    </select>
+
+
+    <select id="getAnimateTotalCountByDate" resultType="Integer">
+        select count(*) from animate
+        <where>
+            date = #{search_text};
+        </where>
+    </select>
+    <select id="loadAnimateInfoByDate" resultType="animate">
+        select * from animate
+        <where>
+            date = #{search_text}
+        </where>
+         limit #{currentPage},#{pageSize};
+
+    </select>
+
+    <select id="getAnimateTotalCountByTittle" resultType="Integer">
+        select count(*) from animate
+        <where>
+            tittle like #{search_text};
+        </where>
+    </select>
+    <select id="loadAnimateInfoByTittle" resultType="animate">
+        select * from animate
+        <where>
+            tittle like #{search_text}
+        </where>
+        limit #{currentPage},#{pageSize};
+    </select>
+
+    <select id="getAnimateTotalCountByMadeFrom" resultType="Integer">
+        select count(*) from animate
+        <where>
+            madeFrom like #{search_text};
+        </where>
+    </select>
+    <select id="loadAnimateInfoByMadeFrom" resultType="animate">
+        select * from animate
+        <where>
+            madeFrom like #{search_text}
+        </where>
+        limit #{currentPage},#{pageSize};
+    </select>
+
+    <select id="getAnimateTotalCountByCV" resultType="Integer">
+    select count(*) from animate
+    <where>
+        characterVoice like #{search_text};
+    </where>
+</select>
+    <select id="loadAnimateInfoByCV" resultType="animate">
+        select * from animate
+        <where>
+            characterVoice like #{search_text}
+        </where>
+        limit #{currentPage},#{pageSize};
+    </select>
+
+    <select id="getAnimateTotalCountByTags" resultType="Integer">
+        select count(*) from animate
+        <where>
+            tag like #{search_text};
+        </where>
+    </select>
+    <select id="loadAnimateInfoByTags" resultType="animate">
+        select * from animate
+        <where>
+            tag like #{search_text}
+        </where>
+        limit #{currentPage},#{pageSize};
+    </select>
+
+
+
+
+    <insert id="LoadNewAnimate" parameterType="animate">
+    insert into animate values(#{animate_id}, #{link}, #{place}, #{img}, #{tittle}, #{date}, #{tag}, #{characterVoice}, #{madeFrom}, #{watchPoint}, #{introduce})
+  </insert>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.otakus.mapper.AdminMapper">
+   <select id="loadAllUser" resultType="user">
+       select * from user
+       <where>
+           extra = 'futsu' limit #{startrow}, #{pagesize};
+       </where>
+   </select>
+    <select id="getUserTotalCount" resultType="Integer">
+        select count(*) from user;
+    </select>
+    <select id="loadUsers" resultType="user">
+        select * from user limit #{startrow}, #{pagesize};
+    </select>
+
+
+
+
+    <delete id="DeleteFriendTableDataByUserID" parameterType="String">
+        delete from user_friend
+        <where>
+            user_id = #{id};
+        </where>
+    </delete>
+    <delete id="DeleteFriendTableDataByFriendID" parameterType="String">
+        delete from user_friend
+        <where>
+           friend_id = #{id};
+        </where>
+    </delete>
+    <delete id="DeleteUserTableData" parameterType="String">
+        delete from user
+        <where>
+           user_id = #{id};
+        </where>
+    </delete>
+    <delete id="DeletePictureTableData" parameterType="String">
+        delete from picture
+        <where>
+          from_user_id  = #{id};
+        </where>
+    </delete>
+    <delete id="DeleteMediaTableData" parameterType="String">
+        delete from media
+        <where>
+           from_user_id = #{id};
+        </where>
+    </delete>
+    <delete id="DeleteInformationTableData" parameterType="String">
+        delete from information
+        <where>
+           from_user = #{id};
+        </where>
+    </delete>
+    <delete id="DeleteCommentTableData" parameterType="String">
+        delete from comment
+        <where>
+          from_user_id  = #{id};
+        </where>
+    </delete>
+    <delete id="DeleteFriendMessageTableDataByFrom" parameterType="String">
+        delete from friend_message
+        <where>
+           message_from_id = #{id};
+        </where>
+    </delete>
+    <delete id="DeleteFriendMessageTableDataByTo" parameterType="String">
+        delete from friend_message
+        <where>
+           message_to_id = #{id};
+        </where>
+    </delete>
+
+
+    <select id="LoadAllInfo" resultType="information">
+        select * from information;
+    </select>
+
+</mapper>

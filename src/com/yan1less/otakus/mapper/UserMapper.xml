@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.otakus.mapper.UserMapper">
+    <update id="EditUserInfo" parameterType="user">
+        update user
+           set
+              username = #{username},
+              password = #{password},
+              petname = #{petname},
+              telephone = #{telephone},
+              address = #{address},
+              email = #{email},
+              introduce = #{introduce}
+              where
+              user_id= #{user_id}
+
+
+
+    </update>
+    <select id="SelectPetnameByID" resultType="String" parameterType="String">
+        select petname from user
+        <where>
+              user_id = #{user_id};
+        </where>
+    </select>
+</mapper>

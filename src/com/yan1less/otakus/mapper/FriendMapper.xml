@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.otakus.mapper.FriendMapper">
+    <select id="SearchFriend" parameterType="String" resultType="user">
+        select * from user
+        <where>
+            petname = #{name};
+        </where>
+    </select>
+    <select id="loadUserFriends" resultType="user">
+        SELECT * FROM user
+        <where>
+            user_id in
+            (select friend_id from user_friend
+            <where>
+                user_id = #{user_id}) limit #{currentPage},#{pagesize};
+            </where>
+        </where>
+
+    </select>
+    <select id="SelectAllFriendNumber" parameterType="String" resultType="Integer">
+        select count(*) from user_friend
+        <where>
+            user_id = #{user_id};
+        </where>
+    </select>
+
+    <insert id="AddFriend" >
+        insert into user_friend values (#{id},#{userid},#{friendid},#{time},null ),
+        (#{id2},#{friendid},#{userid},#{time},null );
+
+    </insert>
+
+    <select id="SerachFriendByID" parameterType="String" resultType="user">
+        select * from user
+        <where>
+            user_id = #{id};
+        </where>
+    </select>
+    <delete id="DeleteFriend">
+        delete from user_friend
+        <where>
+            user_id = #{user_id} and friend_id = #{friend_id};
+        </where>
+    </delete>
+    <select id="LoadFriendComment" parameterType="String" resultType="comment">
+        select * from comment where from_user_id = #{id};
+    </select>
+
+    <select id="JudgeIsFriend" parameterType="String" resultType="Integer">
+        select count(*) from user_friend
+        <where>
+            user_id = #{user_id} and friend_id = #{friend_id};
+        </where>
+    </select>
+</mapper>
