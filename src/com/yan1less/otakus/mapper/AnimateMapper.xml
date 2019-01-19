@@ -90,4 +90,8 @@
     <insert id="LoadNewAnimate" parameterType="animate">
     insert into animate values(#{animate_id}, #{link}, #{place}, #{img}, #{tittle}, #{date}, #{tag}, #{characterVoice}, #{madeFrom}, #{watchPoint}, #{introduce})
   </insert>
+
+    <select id="LoadExistsyears" resultType="String">
+        select addDate from animateDate;
+    </select>
 </mapper>

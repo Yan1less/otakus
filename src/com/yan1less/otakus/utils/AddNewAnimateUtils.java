@@ -56,24 +56,10 @@ public class AddNewAnimateUtils {
             //1.先剥去标签，仅留下路径
             String ImgSrc = ImgElements.get(CurrentI).toString();
             String src = utiils.getPureSrc(ImgSrc);
-            //2.剥去路径，留下名字
-            System.out.println("ImgSrc = "+ImgSrc);
-            String ImgName = utiils.getImgName(ImgSrc);
 
-            //3.下载图片并设置bean中图片的路径
-            String psypath = "D:/testpic/"+ImgName;
-            String LinuxPsyPath = "/root/otakusProject/OTAKUS/web/pics/AnimatePic/"+ImgName;
-            GetCode.downloadPicture(src,psypath);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println("下载出现异常");
-                e.printStackTrace();
-            }
 
-            //设置图片名字
-            String logicPath = "/AnimatePic/"+ImgName;
-            bean.setImg(logicPath);
+
+            bean.setImg(src);
 
             //设置标题
             String tittle = TittleElements.get(CurrentI).toString();

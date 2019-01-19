@@ -80,11 +80,11 @@
                </select>
                <input type="button" value="搜索" style="height: 30px;width: 40px;" onclick="CheckNull()"/>
                <div style="float: right">
-                   <span style="font-size: small;color: #4e4e4e">
-                       总共检索到
-                       <span style="font-style: oblique;color: #2a6496">${animatePage.totalCount}</span>条数据，共
-                       <span style="font-style: oblique;color: #2a6496">${animatePage.totalPage}</span>页
-                   </span>
+                   <%--<span style="font-size: small;color: #4e4e4e">--%>
+                       <%--总共检索到--%>
+                       <%--<span style="font-style: oblique;color: #2a6496">${animatePage.totalCount}</span>条数据，共--%>
+                       <%--<span style="font-style: oblique;color: #2a6496">${animatePage.totalPage}</span>页--%>
+                   <%--</span>--%>
                </div>
 
                <br>
@@ -100,7 +100,7 @@
             <div class="kg">
                 <c:forEach items="${animatePage.rows}" var="animate">
                     <div class="kg-a fl" style="margin-bottom:10px">
-                        <div class="fl" ><img  style="width: 250px;height: 360px;" src="${pageContext.request.contextPath}${animate.img}"></div>
+                        <div class="fl" ><img  style="width: 250px;height: 360px;" src="${animate.img}"></div>
                         <div class="kg-a2 fl"style="width: 550px">
                             <a href="${animate.link}"><div class="kg-a4" style="font-size: 20px">${animate.tittle} </div></a>
                             <div class="kg-a3"><span class="kg-a5">发源地：</span>${animate.place}</div>
@@ -123,7 +123,9 @@
             <br>
             <div style="text-align: right">
                 <ul class="pagination">
-
+                    <div style="float: left;">
+                    <li style="font-size: larger"> 共${animatePage.totalCount}条数据，${animatePage.totalPage}页  &nbsp;&nbsp;&nbsp;</li>
+                    </div>
                     <c:if test="${animatePage.currentPage!=1}">
                         <li>
                             <a href="${pageContext.request.contextPath}/animate.action?currentPage=${animatePage.currentPage-1}&search_type=${current_search}&search_text=${current_text}">
@@ -139,7 +141,25 @@
                             </a>
                         </li>
                     </c:if>
-                    <c:if test="${animatePage.currentPage<5}">
+
+                    <c:if test="${animatePage.currentPage<5 && animatePage.totalPage<5}">
+                        <c:forEach begin="1" end="${animatePage.totalPage}" var="fenyepage">
+
+                            <c:if test="${fenyepage == animatePage.currentPage}">
+                                <li class="active">
+                                    <a href="animate.action?currentPage=${fenyepage}&search_type=${current_search}&search_text=${current_text}">${fenyepage}</a>
+                                </li>
+                            </c:if>
+                            <c:if test="${fenyepage != animatePage.currentPage}">
+                                <li>
+                                    <a href="animate.action?currentPage=${fenyepage}&search_type=${current_search}&search_text=${current_text}">${fenyepage}</a>
+                                </li>
+                            </c:if>
+
+                        </c:forEach>
+                    </c:if>
+
+                    <c:if test="${animatePage.currentPage<5 && animatePage.totalPage>5}">
                         <c:forEach begin="1" end="5" var="fenyepage">
 
                             <c:if test="${fenyepage == animatePage.currentPage}">
@@ -155,6 +175,7 @@
 
                         </c:forEach>
                     </c:if>
+
                     <c:if test="${animatePage.currentPage>=5}">
                         <c:forEach begin="${animatePage.currentPage-3}" end="${animatePage.currentPage+3>=animatePage.totalPage?animatePage.totalPage:animatePage.currentPage+3}" var="fenyepage">
 

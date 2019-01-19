@@ -109,11 +109,28 @@ public class AnimateController {
             List<animate> animateList = utils.DLDLSpider("http://www.dilidili.wang/anime/" + years);
 
             Boolean succeed = animateService.AddNewAnimate(animateList);
-            response.getWriter().write("1");
+            System.out.println("添加结果"+succeed);
+            response.getWriter().write("{\"kekka\":\"succeed\"}");
+
         }
-        response.getWriter().write("0");
+        else {
+            System.out.println("失败");
+            response.getWriter().write("{\"kekka\":\"error\"}");
+        }
+
+    }
 
 
+
+    //test
+    @RequestMapping("test")
+    public void AddNewAnimate1(String years, HttpServletResponse response) throws IOException {
+        //先判断传来的时间是否正确
+
+
+        System.out.println(years);
+        boolean isExist = animateService.judgeYearIsExist(years);
+        response.getWriter().write("{\"kekka\":\"succeed\"}");
 
     }
 

@@ -21,4 +21,6 @@ public interface AnimateService {
     Page<animate> SearchAnimateByTags(Integer intCurrentPage, String search_text);
 
     Boolean AddNewAnimate(List<animate> animateList);
+
+    boolean judgeYearIsExist(String years);
 }

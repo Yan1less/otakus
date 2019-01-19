@@ -77,13 +77,15 @@
         var years=prompt("请输入需要添加动漫的生产年份，如：201810","201810");
         if (years!=null && years!=""){
             $.post(
-                "${pageContext.request.contextPath}//addNewAnimate.action",
+                "${pageContext.request.contextPath}/test.action",
                 {"years":years},
                 function (data) {
-                    if(data=="1")
+                    if(data.kekka=="succeed")
                         alert("成功添加");
-                    else if(data=="0")
+                    else if(data.kekka=="error")
                         alert("日期输入有误");
+                    else
+                        alert("未返回");
                 },
                 "json"
             );

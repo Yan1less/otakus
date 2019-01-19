@@ -40,4 +40,6 @@ public interface AnimateMapper {
 
     //加入新动漫
     int LoadNewAnimate(animate bean);
+    //判断动漫添加年份，这里是取出已添加的年份
+    List<String> LoadExistsyears();
 }

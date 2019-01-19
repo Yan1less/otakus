@@ -152,4 +152,11 @@ public class AnimateServiceImpl implements AnimateService{
         }
         return true;
     }
+
+    @Override
+    public boolean judgeYearIsExist(String years) {
+        List<String> yearList = animateMapper.LoadExistsyears();
+
+        return false;
+    }
 }
