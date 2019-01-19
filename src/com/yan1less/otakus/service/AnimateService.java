@@ -23,4 +23,6 @@ public interface AnimateService {
     Boolean AddNewAnimate(List<animate> animateList);
 
     boolean judgeYearIsExist(String years);
+
+    Boolean addExistYears(String years);
 }

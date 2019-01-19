@@ -105,11 +105,13 @@ public class AnimateController {
         System.out.println(years);
 
         AddNewAnimateUtils utils = new AddNewAnimateUtils();
-        if(utils.CheckYears(years)) {
+        if(utils.CheckYears(years)  && !animateService.judgeYearIsExist(years)) {
             List<animate> animateList = utils.DLDLSpider("http://www.dilidili.wang/anime/" + years);
 
             Boolean succeed = animateService.AddNewAnimate(animateList);
             System.out.println("添加结果"+succeed);
+
+            Boolean succeed2 = animateService.addExistYears(years);
             response.getWriter().write("{\"kekka\":\"succeed\"}");
 
         }
@@ -130,6 +132,8 @@ public class AnimateController {
 
         System.out.println(years);
         boolean isExist = animateService.judgeYearIsExist(years);
+        Boolean aBoolean = animateService.addExistYears(years);
+        System.out.println(aBoolean);
         response.getWriter().write("{\"kekka\":\"succeed\"}");
 
     }

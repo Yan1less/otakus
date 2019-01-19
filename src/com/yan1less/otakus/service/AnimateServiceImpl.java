@@ -2,6 +2,7 @@ package com.yan1less.otakus.service;
 
 import com.yan1less.otakus.mapper.AnimateMapper;
 import com.yan1less.otakus.pojo.animate;
+import com.yan1less.otakus.pojo.animateDate;
 import com.yan1less.otakus.utils.Page;
 import com.yan1less.otakus.utils.SolrJ;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -14,6 +15,8 @@ import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -156,7 +159,21 @@ public class AnimateServiceImpl implements AnimateService{
     @Override
     public boolean judgeYearIsExist(String years) {
         List<String> yearList = animateMapper.LoadExistsyears();
-
+        for (String temp:yearList){
+            if(temp.equals(years))
+                return true;
+        }
         return false;
+    }
+
+    @Override
+    public Boolean addExistYears(String years) {
+        Date now = new Date( );
+        SimpleDateFormat ft = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
+        String time = ft.format(now);
+        animateDate bean = new animateDate();
+        bean.setYears(years);bean.setAddDate(time);
+        animateMapper.addExistYears(bean);
+        return null;
     }
 }

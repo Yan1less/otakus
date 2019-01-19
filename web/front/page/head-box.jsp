@@ -77,7 +77,7 @@
         var years=prompt("请输入需要添加动漫的生产年份，如：201810","201810");
         if (years!=null && years!=""){
             $.post(
-                "${pageContext.request.contextPath}/test.action",
+                "${pageContext.request.contextPath}/addNewAnimate.action",
                 {"years":years},
                 function (data) {
                     if(data.kekka=="succeed")

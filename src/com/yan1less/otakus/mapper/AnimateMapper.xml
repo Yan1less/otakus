@@ -92,6 +92,12 @@
   </insert>
 
     <select id="LoadExistsyears" resultType="String">
-        select addDate from animateDate;
+        select year from animateDate;
     </select>
+
+    <insert id="addExistYears" parameterType="animateDate" useGeneratedKeys="true" keyProperty="id">
+        insert into animateDate values (#{id},#{years},#{addDate},#{extra});
+  </insert>
+
+
 </mapper>

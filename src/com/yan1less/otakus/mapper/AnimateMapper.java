@@ -1,6 +1,7 @@
 package com.yan1less.otakus.mapper;
 
 import com.yan1less.otakus.pojo.animate;
+import com.yan1less.otakus.pojo.animateDate;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -42,4 +43,6 @@ public interface AnimateMapper {
     int LoadNewAnimate(animate bean);
     //判断动漫添加年份，这里是取出已添加的年份
     List<String> LoadExistsyears();
+
+    void addExistYears(animateDate bean);
 }
